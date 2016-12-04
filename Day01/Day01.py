@@ -9,7 +9,7 @@ def main():
     moves = {0: [0, 1], 1: [1, 0], 2: [0, -1], 3: [-1, 0]}
     coordinates = [0, 0]
     locations = [[0, 0]]
-    repeated = False
+    repeat_found = False
     for d in directions:
         if d[0] == "R":
             if facing == 3:
@@ -25,9 +25,9 @@ def main():
         for _ in range(int(d[1:])):
             coordinates = [x + y for x, y in zip(coordinates, moves[facing])]
             
-            if coordinates in locations and repeated == False:
+            if coordinates in locations and repeat_found == False:
                 print("First repeat at", str(coordinates) + ",", int(math.fabs(coordinates[0]) + math.fabs(coordinates[1])), "blocks away.")
-                repeated = True
+                repeat_found = True
             else:
                 locations.append(list(coordinates))
             
