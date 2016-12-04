@@ -1,8 +1,3 @@
-'''
-Created on Dec 4, 2016
-
-@author: Graham
-'''
 import math
 
 with open("Day01_Input.txt") as file:
