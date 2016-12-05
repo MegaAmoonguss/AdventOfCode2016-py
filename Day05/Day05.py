@@ -17,9 +17,9 @@ def part1(door_id):
     return password
 
 def part2(door_id):
-    password = '69_1____'
-    n = 13540620
-    count = 3
+    password = '________'
+    n = 0
+    count = 0
     while count < 8:
         n += 1
         print(str(n) + ', ' + password)
