@@ -1,5 +1,5 @@
 def main():
-    with open("Day02_Input.txt") as file:
+    with open('Day02_Input.txt') as file:
         instructions = [l.rstrip() for l in file.readlines()]
         
     keypad = [[1, 2, 3],
@@ -8,7 +8,7 @@ def main():
     coordinates = [1, 1]
     
     code = solve(keypad, instructions, coordinates)
-    print("Part 1 code:", code)
+    print('Part 1 code:', code)
     
     keypad = [[0, 0, 1, 0, 0],
               [0, 2, 3, 4, 0],
@@ -18,11 +18,11 @@ def main():
     coordinates = [2, 0]
     
     code = solve(keypad, instructions, coordinates)
-    print("Part 2 code:", code)
+    print('Part 2 code:', code)
 
 def solve(keypad, instructions, coordinates):
     moves = {'U': [-1, 0], 'R': [0, 1], 'D': [1, 0], 'L': [0, -1]}
-    code = ""
+    code = ''
     
     for button in instructions:
         for move in button:

@@ -1,10 +1,10 @@
 def main():
-    with open("Day03_Input.txt") as file:
+    with open('Day03_Input.txt') as file:
         contents = file.readlines()
         
     sides = []
     for line in contents:
-        sides.append([int(n.strip()) for n in line.split("  ") if not n.strip() == ''])
+        sides.append([int(n.strip()) for n in line.split('  ') if not n.strip() == ''])
         
     count = 0
     for triangle in sides:
@@ -12,7 +12,7 @@ def main():
         if triangle[0] + triangle[1] > triangle[2]:
             count += 1
     
-    print("Possible triangles (part 1):", count)
+    print('Possible triangles (part 1):', count)
     
     count = 0
     for c in range(len(sides[0])):
@@ -23,7 +23,7 @@ def main():
                 count += 1
             r += 3
     
-    print("Possible triangles (part 2):", count)
+    print('Possible triangles (part 2):', count)
     
 if __name__ == '__main__':
     main()

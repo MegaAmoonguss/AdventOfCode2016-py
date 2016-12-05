@@ -1,5 +1,5 @@
 def main():
-    with open("Day04_Input.txt") as file:
+    with open('Day04_Input.txt') as file:
         contents = [name.rstrip() for name in file.readlines()]
         
     sum = 0
@@ -16,7 +16,7 @@ def main():
         if ''.join(most_common(letters)) == room[-6:-1]:
             sum += num
         
-        if "north" in rot_alpha(num % 26)(room[:-7]):
+        if 'north' in rot_alpha(num % 26)(room[:-7]):
             print(rot_alpha(num % 26)(room[:-7]))
             
     print(sum)
