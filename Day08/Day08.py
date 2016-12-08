@@ -30,14 +30,14 @@ def main():
 def rotate_row(l, n):
     return l[-n:] + l[:-n]
 
-def rotate_col(s, c, n):
+def rotate_col(screen, c, n):
     col = []
-    for r in s:
+    for r in screen:
         col.append(r[c])
     col = rotate_row(col, n)
-    for r in range(len(s)):
-        s[r][c] = col[r]
-    return s
+    for r in range(len(screen)):
+        screen[r][c] = col[r]
+    return screen
 
 if __name__ == '__main__':
     main()
