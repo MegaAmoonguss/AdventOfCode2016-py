@@ -23,7 +23,7 @@ def main():
         for c in range(len(screen[0])):
             if screen[r][c] == '#':
                 count += 1
-            print(screen[r][c], end='')
+                print(screen[r][c], end='')
         print()
     print(str(count) + ' pixels')
     
