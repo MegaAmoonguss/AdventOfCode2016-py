@@ -18,11 +18,12 @@ def main():
         for _ in range(int(d[1:])):
             coordinates = [x + y for x, y in zip(coordinates, moves[facing])]
             
-            if coordinates in locations and not repeat_found:
-                print('First repeat at', str(coordinates) + ',', int(abs(coordinates[0]) + abs(coordinates[1])), 'blocks away.')
-                repeat_found = True
-            elif not repeat_found:
-                locations.append(list(coordinates))
+            if not repeat_found:
+                if coordinates in locations:
+                    print('First repeat at', str(coordinates) + ',', int(abs(coordinates[0]) + abs(coordinates[1])), 'blocks away.')
+                    repeat_found = True
+                else:
+                    locations.append(list(coordinates))
             
     print('End at', str(coordinates) + ',', int(abs(coordinates[0]) + abs(coordinates[1])), 'blocks away.')
 
