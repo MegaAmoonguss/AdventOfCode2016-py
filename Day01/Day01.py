@@ -1,5 +1,3 @@
-import math
-
 def main():
     with open('Day01_Input.txt') as file:
         directions = file.read().split(', ')
@@ -12,26 +10,21 @@ def main():
     repeat_found = False
     for d in directions:
         if d[0] == 'R':
-            if facing == 3:
-                facing = 0
-            else:
-                facing += 1
+            facing += 1
         else:
-            if facing == 0:
-                facing = 3
-            else:
-                facing -= 1
+            facing -= 1
+        facing %= 4
                 
         for _ in range(int(d[1:])):
             coordinates = [x + y for x, y in zip(coordinates, moves[facing])]
             
-            if coordinates in locations and repeat_found == False:
-                print('First repeat at', str(coordinates) + ',', int(math.fabs(coordinates[0]) + math.fabs(coordinates[1])), 'blocks away.')
+            if coordinates in locations and not repeat_found:
+                print('First repeat at', str(coordinates) + ',', int(abs(coordinates[0]) + abs(coordinates[1])), 'blocks away.')
                 repeat_found = True
-            else:
+            elif not repeat_found:
                 locations.append(list(coordinates))
             
-    print('End at', str(coordinates) + ',', int(math.fabs(coordinates[0]) + math.fabs(coordinates[1])), 'blocks away.')
+    print('End at', str(coordinates) + ',', int(abs(coordinates[0]) + abs(coordinates[1])), 'blocks away.')
 
 if __name__ =='__main__':
     main()

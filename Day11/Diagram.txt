@@ -1,0 +1,10 @@
+F4 .   .   .   .   .   .   .   .   .   .
+F3 .   .   .   .   .   .   .   .   .   .
+F2 .   PoM .   .   .   PmM .   .   .   .
+F1 PoG .   TmG TmM PmG .   RuG RuM CoG CoM
+
+Notes:
+1. Possibly brute force out of all legal moves for any given moment.
+2. If there is the option of bringing a generator + microchip instead of just one, do that.
+3. For moving down, use a microchip as a placeholder, unless this is not a legal move, then use a generator.
+4. ???
