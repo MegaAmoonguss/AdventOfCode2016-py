@@ -16,6 +16,7 @@ def main():
         facing %= 4
                 
         for _ in range(int(d[1:])):
+            print(list(zip(coordinates, moves[facing])))
             coordinates = [x + y for x, y in zip(coordinates, moves[facing])]
             
             if not repeat_found:
