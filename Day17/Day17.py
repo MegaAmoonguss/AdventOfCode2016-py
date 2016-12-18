@@ -1,54 +1,57 @@
 from hashlib import md5
 
 def main():
-    # input = 'awrkjxxr'
-    input = 'ihgpwlah'
+    input = 'awrkjxxr'
     
+    global moves
+    global directions
+    global solutions
     moves = [[0, -1], [0, 1], [-1, 0], [1, 0]]
     directions = ['U', 'D', 'L', 'R']
-    position = [0, 0]
-    end = ''
+    solutions = []
     
-    count = 0
-    while position != [3, 3]:
-        count += 1
-        doors = [False, False, False, False]
-        
-        hash = md5((input + end).encode('utf-8')).hexdigest()[:4]
-        
-        for i in range(len(hash)):
-            if ord(hash[i]) >= 98 and ord(hash[i]) <= 102:
-                doors[i] = True
-        
-        if position[0] + 1 == 4:
-            doors[3] = False
-        if position[0] - 1 == -1:
-            doors[2] = False
-        if position[1] + 1 == 4:
-            doors[1] = False
-        if position[1] - 1 == -1:
-            doors[0] = False
-        
-        if occurrences(True, doors) == 1:
+    move([0, 0], '', input, [False, False, False, False])
+    
+    min_len = len(solutions[0])
+    for s in solutions:
+        if len(s) < min_len:
+            min_len = len(s)
+            shortest = s
+    print(shortest)
+    
+def move(coordinates, path, input, doors):
+    if coordinates == [3, 3]:
+        solutions.append(path)
+    
+    doors = [False, False, False, False]
+    
+    hash = md5((input + path).encode('utf-8')).hexdigest()[:4]
+    
+    for i in range(len(hash)):
+        if ord(hash[i]) >= 98 and ord(hash[i]) <= 102:
+            doors[i] = True
+    
+    if coordinates[0] + 1 == 4:
+        doors[3] = False
+    if coordinates[0] - 1 == -1:
+        doors[2] = False
+    if coordinates[1] + 1 == 4:
+        doors[1] = False
+    if coordinates[1] - 1 == -1:
+        doors[0] = False
+    
+    if len(path) < 150:
+        if not True in doors:
+            print('FAILURE: ', path)
+        elif occurrences(True, doors) == 1:
             index = doors.index(True)
-            
-        # Make this check both all possble paths when 2+ are available
+            coordinates = [x + y for x, y in zip(coordinates, moves[index])]
+            path += directions[index]
+            move(coordinates, path, input, doors)
         else:
-            if doors[1] == True:
-                index = 1
-            elif doors[3] == True:
-                index = 3
-            elif doors[0] == True:
-                index = 0
-            else:
-                index = 2
-        position = [x + y for x, y in zip(position, moves[index])]
-        end += directions[index]
-        
-        print(position)
-        print(end)
-        
-    print(count)
+            for i in reversed(range(len(doors))):
+                if doors[i] == True:
+                    move([x + y for x, y in zip(coordinates, moves[i])], path + directions[i], input, doors)
     
 def occurrences(e, l):
     count = 0
