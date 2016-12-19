@@ -6,9 +6,6 @@ def main():
     
     i = 0
     while i < len(contents):
-        print(i, contents[i], registry)
-        if i == 16:
-            print('At 17')
         if contents[i][0] == 'cpy':
             if contents[i][1].isdigit():
                 registry[contents[i][2]] = int(contents[i][1])

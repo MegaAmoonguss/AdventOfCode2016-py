@@ -1,21 +1,18 @@
-# from itertools import compress
+from math import log
 
 def main():
-    input = 3004953
-    print(take_across(1, [n for n in range(1, input + 1)]))
+    # input = 3004953
+    input = 1000
+    for n in range(1, input):
+        print(n, take_across(n))
     
-def take_across(current, elves):
-    # presents = [True for _ in range(len(elves))]
-    
-    while elves:
-        if len(elves) == 1:
-            return elves[0]
-        else:
-            print(len(elves))
-            del elves[len(elves) // 2]
-            # elves = list(compress(elves, presents))
-            elves = rotate(elves, 1)
-            # presents = presents[:-1]
+# Actually simulating this SUCKS, just do the math
+def take_across(num_elves):
+    winner = 1
+    for n in range(1, num_elves + 1):
+        if log(n, 3) == int(log(n, 3)):
+            winner = 1
+        
     
 def rotate(l, n):
     return l[n:] + l[:n]
