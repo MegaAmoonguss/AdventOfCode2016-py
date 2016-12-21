@@ -4,21 +4,31 @@ from itertools import compress
 def main():
     # input = 'awrkjxxr'
     input = 'ihgpwlah'
+    # input = 'hijkl'
     
     global moves
     global directions
     moves = {'U': [0, -1], 'D': [0, 1], 'L': [-1, 0], 'R': [1, 0]}
     directions = ['U', 'D', 'L', 'R']
      
-    move((0, 0), input)
+    move([0, 0], input)
     
 def move(coordinates, input):
     path = ''
     queue = ['']
+    parent = [0, 0]
     
+    # Messes with the path, just ends up taking everything in the queue as one path unless it can't move,
+    # in which case it backs up one
     while queue:
-        # parent = coordinates
-        path = path[len(path) - 1] + queue[0]
+        if coordinates == [3, 3]:
+            break
+        parent = coordinates
+        path += queue[0]
+        print(path)
+        
+        if queue[0] != '':
+            coordinates = [x + y for x, y in zip(moves[queue[0]], coordinates)]
         queue.pop(0)
         
         doors = [False, False, False, False]
@@ -28,8 +38,16 @@ def move(coordinates, input):
             if 98 <= ord(hash[i]) <= 102:
                 doors[i] = True
         
-        for d in compress(directions, doors):
-            queue.append(d)
+        if not True in doors:
+            path = path[:-1]
+            coordinates = parent
+        else:
+            for d in compress(directions, doors):
+                if ((d == 'U' and coordinates[1] != 0) or
+                    (d == 'D' and coordinates[1] != 3) or
+                    (d == 'L' and coordinates[0] != 0) or
+                    (d == 'R' and coordinates[0] != 3)):
+                    queue.append(d)
     
 #===============================================================================
 # def move_dfs(coordinates, path, input):
