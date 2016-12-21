@@ -36,6 +36,7 @@ def unscramble(contents, password):
     for s in [''.join(p) for p in permutations(password)]:
         if scramble(contents, s) == password:
             print(s)
+            break
 
 def swap_pos(s, x, y):
     if x < y:
