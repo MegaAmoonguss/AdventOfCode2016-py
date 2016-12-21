@@ -6,7 +6,7 @@ def main():
     
     password = 'fbgdceah'
     
-    brute_unscramble(contents, password)
+    unscramble(contents, password)
 
 def scramble(contents, password):
     for line in contents:
@@ -32,29 +32,7 @@ def scramble(contents, password):
     
     return password
 
-# Not working, brute_unscramble() works
 def unscramble(contents, password):
-    for line in reversed(contents):
-        if line[0] == 'swap':
-            if line[1] == 'position':
-                password = swap_pos(password, int(line[2]), int(line[5]))
-            else:
-                password = swap_letters(password, line[2], line[5])
-        elif line[0] == 'rotate':
-            if line[1] == 'right':
-                password = rotate_left(password, int(line[2]))
-            elif line[1] == 'left':
-                password = rotate_right(password, int(line[2]))
-            else:
-                password = unrotate(password, line[6])
-        elif line[0] == 'reverse':
-            password = reverse(password, int(line[2]), int(line[4]))
-        else:
-            password = move(password, int(line[5]), int(line[2]))
-    
-    return password
-
-def brute_unscramble(contents, password):
     for s in [''.join(p) for p in permutations(password)]:
         if scramble(contents, s) == password:
             print(s)
