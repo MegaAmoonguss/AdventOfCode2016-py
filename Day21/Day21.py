@@ -1,4 +1,5 @@
 from itertools import permutations
+
 def main():
     with open('Day21_Input.txt') as file:
         contents = [line.rstrip().split(' ') for line in file.readlines()]
