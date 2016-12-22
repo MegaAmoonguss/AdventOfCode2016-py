@@ -11,7 +11,28 @@ def main():
     moves = {'U': [0, -1], 'D': [0, 1], 'L': [-1, 0], 'R': [1, 0]}
     directions = ['U', 'D', 'L', 'R']
      
-    move([0, 0], input)
+    print(bfs({}, [0, 0], [3, 3]))
+    
+# Have to figure out how to implement this
+def bfs(graph, start, end):
+    # maintain a queue of paths
+    queue = []
+    # push the first path into the queue
+    queue.append([start])
+    while queue:
+        # get the first path from the queue
+        path = queue.pop(0)
+        # get the last node from the path
+        node = path[-1]
+        # path found
+        if node == end:
+            return path
+        
+        # enumerate all adjacent nodes, construct a new path and push it into the queue
+        for adjacent in graph.get(node, []):
+            new_path = list(path)
+            new_path.append(adjacent)
+            queue.append(new_path)
     
 def move(coordinates, input):
     path = ''
