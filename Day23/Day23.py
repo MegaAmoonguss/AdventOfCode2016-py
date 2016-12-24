@@ -6,6 +6,12 @@ def main():
     
     i = 0
     while i < len(contents):
+        if i == 4:
+            registry['a'] = int(registry['b']) * int(registry['d'])
+            registry['c'] = 0
+            registry['d'] = 0
+            i += 6
+            continue
         if contents[i][0] == 'cpy':
             try:
                 int(contents[i][1])
